@@ -61,7 +61,7 @@ p{
   padding-top: 15px;;
 }
 
-.text{
+.start{
   color:hsl(223, 47%, 23%);
 }
 
@@ -83,6 +83,23 @@ p{
 }
 
 .payment:hover {
+  background-color: #4940a8;
+  cursor: pointer;
+  border:#4940a8;
+}
+
+.startBtn{
+  background-color:hsl(245, 75%, 52%);
+  width:90%;
+  margin:20px;
+  border-radius: 10px;
+  color:hsl(225, 100%, 98%);
+  padding: 15px;
+  font-weight: bold;
+  box-shadow: 20px 20px 60px 0px hsl(224, 23%, 55%);
+}
+
+.startBtn:hover {
   background-color: #4940a8;
   cursor: pointer;
   border:#4940a8;
