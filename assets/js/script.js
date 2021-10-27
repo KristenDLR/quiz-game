@@ -1,22 +1,39 @@
 //variables to keep track of quiz state, currentQuestion, time, timerID
 let quentionIndex
-let time
+//question array *15
+let time =questions.length * 15;
 let score = 0;
+let timer;
 
 //variable to reference DOM elements .getElementByID
-
+let timeEl= document.getElementById("time");
+let startBtn = document.getElementById("start");
+let questionsDiv = document.getElementById("questions");
 //sound effect (ice box)
 
 //Function to start quiz
-  //hide start screen
-  //un-hide questions section
-  //start timer
-  //show starting time
-  //call function to get next Question
+function startQuiz(){
 
+//hide start screen
+  let startScreen = document.getElementById("start-screen");
+  startScreen.setAttribute("class", "hide");
+
+  questionsDiv.removeAttribute("class");
+
+  //start timer, setInterval() repeatedly calls a function with a fixed time delay between each call.
+  //This will make it tock down because it repeatedly calls the clock()
+  timer = setInterval(clock, 1000);
+  console.log(timer);
+  //show starting time
+  timeEl.textContent = time;
+  //call function to get next Question
+  nextQuestion();
+
+}
 
 //function to get next Question
-  //get current questio from array
+function nextQuestion(){
+  //get current question from array
   //update title current question
   //clear out any old question choices
   //loop over choices
@@ -25,7 +42,7 @@ let score = 0;
 
       //attach click event listener to each choice
       //display on the page
-
+    }
 
 
 //function for clicking on question
@@ -54,10 +71,14 @@ let score = 0;
 
 
 // function for clock
+function clock(){
   //update time --
-
+  time--
   //check if user ran out of time, end quiz
-
+  if (time <= 0){
+    endQuiz();
+  }
+}
 
 //function for Saving highscore
   //get value of input box for initials
@@ -77,3 +98,6 @@ let score = 0;
 //user click button to submit initials
 
 //user onclick button to start quiz
+startBtn.addEventListener('click', function (){
+  startQuiz();
+});
