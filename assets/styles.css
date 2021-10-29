@@ -97,6 +97,7 @@ p{
   padding: 15px;
   font-weight: bold;
   box-shadow: 20px 20px 60px 0px hsl(224, 23%, 55%);
+  display: block;
 }
 
 .startBtn:hover {
