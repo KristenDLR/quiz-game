@@ -1,5 +1,5 @@
 //variables to keep track of quiz state, currentQuestion, time, timerID
-let quentionIndex
+let questionIndex = 0;
 //question array *15
 let time =questions.length * 15;
 let score = 0;
@@ -9,6 +9,7 @@ let timer;
 let timeEl= document.getElementById("time");
 let startBtn = document.getElementById("start");
 let questionsDiv = document.getElementById("questions");
+let choicesDiv = document.getElementById("choices");
 //sound effect (ice box)
 
 //Function to start quiz
@@ -23,7 +24,7 @@ function startQuiz(){
   //start timer, setInterval() repeatedly calls a function with a fixed time delay between each call.
   //This will make it tock down because it repeatedly calls the clock()
   timer = setInterval(clock, 1000);
-  console.log(timer);
+  console.log("timer:" + timer);
   //show starting time
   timeEl.textContent = time;
   //call function to get next Question
@@ -34,9 +35,24 @@ function startQuiz(){
 //function to get next Question
 function nextQuestion(){
   //get current question from array
+  let currentQuestion = questions[questionIndex];
   //update title current question
+  let questionsTitleEl = document.getElementById("question-title");
+  questionsTitleEl = currentQuestion.title;
   //clear out any old question choices
+  //set variable for element to empty sting using innerHTML
+ choicesDiv.innerHTML = "";
   //loop over choices
+  for( i = 0 ; i < currentQuestion.choices.length; i ++){
+    let choices  = currentQuestion.choices[i];
+
+    let btn = document.createElement("button");
+    btn.innerHTML = choices;
+    btn.type = "submit";
+    btn.name = "formBtn";
+    document.body.appendChild(btn);
+    console.log("choices: " + choices);
+  }
     //create new button using css styling for each choice
       //create Element and set Attribute
 
