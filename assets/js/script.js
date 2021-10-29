@@ -50,7 +50,7 @@ function nextQuestion(){
     btn.innerHTML = choices;
     btn.type = "submit";
     btn.name = "formBtn";
-    document.body.appendChild(btn);
+    choicesDiv.appendChild(btn);
     console.log("choices: " + choices);
   }
     //create new button using css styling for each choice
