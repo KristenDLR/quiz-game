@@ -35,9 +35,11 @@ function nextQuestion() {
   //get current question from array
   let currentQuestion = questions[questionIndex];
   //update title current question
-  let questionsTitleEl = document.getElementById("question-title");
-  questionsTitleEl = currentQuestion.title;
+  let questionsDiv = document.getElementById("question-title");
   //clear out any old question choices
+  questionsDiv.innerHTML = "";
+  questionsDiv.innerHTML = currentQuestion.title;
+  console.log("current question: " + currentQuestion.title)
   //set variable for element to empty sting using innerHTML
   choicesDiv.innerHTML = "";
   //loop over choices
@@ -46,14 +48,17 @@ function nextQuestion() {
 
     //create new button using css styling for each choice
     //create Element and set Attribute
-    let btn = document.createElement("button");
-    btn.innerHTML = choices;
-    btn.type = "submit";
-    btn.name = "formBtn";
-    choicesDiv.appendChild(btn);
+    let choiceBtn = document.createElement("button");
+    choiceBtn.innerHTML = choices;
+    choiceBtn.type = "submit";
+    choiceBtn.name = "formBtn";
+    choicesDiv.appendChild(choiceBtn);
     console.log("choices: " + choices);
   }
   // btn.addEventListener("click", consol.log ("the button was clicked"));
+  choiceBtn.addEventListener("click", function () {
+    console.log("you have answered" + choice);
+  });
 
   //attach click event listener to each choice
   //display on the page
@@ -110,3 +115,5 @@ function clock() {
 startBtn.addEventListener("click", function () {
   startQuiz();
 });
+
+//user onclick of button to select answer
