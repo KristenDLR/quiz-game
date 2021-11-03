@@ -4,6 +4,9 @@ let questionIndex = 0;
 let time = questions.length * 15;
 let score = 0;
 let timer;
+let choices;
+let currentQuestion;
+let fired_button;
 
 //variable to reference DOM elements .getElementByID
 let timeEl = document.getElementById("time");
@@ -33,7 +36,7 @@ function startQuiz() {
 //function to get next Question
 function nextQuestion() {
   //get current question from array
-  let currentQuestion = questions[questionIndex];
+  currentQuestion = questions[questionIndex];
   //update title current question
   let questionsDiv = document.getElementById("question-title");
   //clear out any old question choices
@@ -44,7 +47,7 @@ function nextQuestion() {
   choicesDiv.innerHTML = "";
   //loop over choices
   for (i = 0; i < currentQuestion.choices.length; i++) {
-    let choices = currentQuestion.choices[i];
+    choices = currentQuestion.choices[i];
 
     //create new button using css styling for each choice
     //create Element and set Attribute
@@ -52,19 +55,48 @@ function nextQuestion() {
     choiceBtn.innerHTML = choices;
     choiceBtn.type = "submit";
     choiceBtn.name = "formBtn";
+    choiceBtn.setAttribute("value", choices)
     choicesDiv.appendChild(choiceBtn);
     console.log("choices: " + choices);
+
+  // function selected(event){
+  //   fired_button = event.target
+  // }
+  choiceBtn.addEventListener("click", event => {
+    let target = event.target;
+    if (target.matches('button')){
+      let value = target.innerHTML
+      console.log ("the button was clicked " + value);
   }
-  // btn.addEventListener("click", consol.log ("the button was clicked"));
-  choiceBtn.addEventListener("click", function () {
-    console.log("you have answered" + choice);
-  });
+  })
+
+  // choiceBtn.onclick = function (event) {
+  //   console.log("you have answered: " + event.target.value());
+  //   checkAnswer();
+  }
+};
+
 
   //attach click event listener to each choice
   //display on the page
-}
+
 
 //function for clicking on question
+function checkAnswer(){
+//check if user guessed wrong
+console.log("choice: " + choices);
+console.log ("answer: " + currentQuestion.answer);
+// if (choices === currentQuestion.answer){
+//   score ++;
+//   console.log("Score: " + score);
+//   nextQuestion();
+// } else {
+//   time = time - 15;
+
+// }
+
+}
+
 //check if user guessed wrong
 //penalize time
 
