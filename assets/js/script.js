@@ -6,7 +6,7 @@ let score = 0;
 let timer;
 let choices;
 let currentQuestion;
-let fired_button;
+let value;
 
 //variable to reference DOM elements .getElementByID
 let timeEl = document.getElementById("time");
@@ -15,7 +15,11 @@ let questionsDiv = document.getElementById("questions");
 let choicesDiv = document.getElementById("choices");
 // let startScreenDiv = document.getElementById("start-screen");
 //sound effect (ice box)
+let endScreen = document.getElementById("end-screen");
+endScreen.style.display = "none";
 
+let timeWrapper= document.getElementById("timeWrapper");
+timeWrapper.style.display = "none";
 //Function to start quiz
 function startQuiz() {
   //hide start screen
@@ -27,6 +31,7 @@ function startQuiz() {
   timer = setInterval(clock, 1000);
   console.log("timer:" + timer);
   //show starting time
+  timeWrapper.style.display = "inline";
   timeEl.textContent = time;
   //call function to get next Question
 
@@ -55,52 +60,58 @@ function nextQuestion() {
     choiceBtn.innerHTML = choices;
     choiceBtn.type = "submit";
     choiceBtn.name = "formBtn";
-    choiceBtn.setAttribute("value", choices)
     choicesDiv.appendChild(choiceBtn);
     console.log("choices: " + choices);
 
-  // function selected(event){
-  //   fired_button = event.target
-  // }
+  //get value of button clicked
   choiceBtn.addEventListener("click", event => {
     let target = event.target;
     if (target.matches('button')){
-      let value = target.innerHTML
+      value = target.innerHTML
       console.log ("the button was clicked " + value);
-  }
+
+  };
+  checkAnswer();
   })
 
-  // choiceBtn.onclick = function (event) {
-  //   console.log("you have answered: " + event.target.value());
-  //   checkAnswer();
-  }
+
+  };
+
+
 };
-
-
-  //attach click event listener to each choice
-  //display on the page
-
 
 //function for clicking on question
 function checkAnswer(){
 //check if user guessed wrong
-console.log("choice: " + choices);
-console.log ("answer: " + currentQuestion.answer);
-// if (choices === currentQuestion.answer){
-//   score ++;
-//   console.log("Score: " + score);
-//   nextQuestion();
-// } else {
-//   time = time - 15;
+// console.log("click: " + value);
 
-// }
+if (value === currentQuestion.answer){
+  score ++;
+  console.log("Score: " + score);
 
-}
+} else {
+  //check if user guessed wrong
+  //penalize time
+  console.log("time first: " + time)
+  time = time - 5;
+  console.log("time: " + time);
 
-//check if user guessed wrong
-//penalize time
-
+};
 //Display new time on page
+timeEl.textContent = time;
+
+questionIndex++;
+
+  // check if we've run out of questions
+  if (questionIndex === questions.length) {
+    quizEnd();
+  } else {
+    nextQuestion();
+  }
+
+};
+
+
 
 //play "wrong"sound effect(icebox)
 //else play right sound effect (icebox)
