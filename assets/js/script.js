@@ -13,6 +13,7 @@ let timeEl = document.getElementById("time");
 let startBtn = document.getElementById("start");
 let questionsDiv = document.getElementById("questions");
 let choicesDiv = document.getElementById("choices");
+let finalScore = document.getElementById("final-score");
 // let startScreenDiv = document.getElementById("start-screen");
 //sound effect (ice box)
 let endScreen = document.getElementById("end-screen");
@@ -102,8 +103,14 @@ timeEl.textContent = time;
 
 questionIndex++;
 
+//flash right/wrong feedback on page for half a second
+
+
   // check if we've run out of questions
-  if (questionIndex === questions.length) {
+  //check if we've run out of time
+//if yes then end quiz
+//else get the next question
+  if (questionIndex === questions.length || time === 0) {
     quizEnd();
   } else {
     nextQuestion();
@@ -116,19 +123,24 @@ questionIndex++;
 //play "wrong"sound effect(icebox)
 //else play right sound effect (icebox)
 
-//flash right/wrong feedback on page for half a second
-
-//move to next question
-
-//check if we've run out of time
-//if yes then end quiz
-//else get the next question
 
 //function to end quiz
-//stop timer
+function quizEnd(){
+  //stop timer
+  clearInterval(timer);
+
+  //show end screen
+  endScreen.style.display = "inline";
+
+  //show final score
+  finalScore.innerHTML = score;
+  //hide questions section
+  questionsDiv.style.display = "none";
+}
+
 //show end screen
 //show final score
-//hide questions section
+
 
 // function for clock
 function clock() {
