@@ -7,6 +7,8 @@ let timer;
 let choices;
 let currentQuestion;
 let value;
+let choiceBtn;
+let initials;
 
 //variable to reference DOM elements .getElementByID
 let timeEl = document.getElementById("time");
@@ -15,6 +17,7 @@ let questionsDiv = document.getElementById("questions");
 let choicesDiv = document.getElementById("choices");
 let finalScore = document.getElementById("final-score");
 let submit = document.getElementById("submit");
+let answerCheck = document.getElementById("answerCheck");
 // let startScreenDiv = document.getElementById("start-screen");
 //sound effect (ice box)
 let endScreen = document.getElementById("end-screen");
@@ -58,7 +61,7 @@ function nextQuestion() {
 
     //create new button using css styling for each choice
     //create Element and set Attribute
-    let choiceBtn = document.createElement("button");
+    choiceBtn = document.createElement("button");
     choiceBtn.innerHTML = choices;
     choiceBtn.type = "submit";
     choiceBtn.name = "formBtn";
@@ -83,20 +86,26 @@ function nextQuestion() {
 };
 
 //function for clicking on question
-function checkAnswer(){
+function checkAnswer(event){
 //check if user guessed wrong
 // console.log("click: " + value);
+//  let answerBtn = currentQuestion.answer
 
 if (value === currentQuestion.answer){
+
+  this.event.target.style.backgroundColor = "green";
   score ++;
   console.log("Score: " + score);
+  // console.log("color changed to green");
 
 } else {
   //check if user guessed wrong
   //penalize time
+  this.event.target.style.backgroundColor = "red";
   console.log("time first: " + time)
   time = time - 5;
   console.log("time: " + time);
+  // console.log("color changed to red");
 
 };
 //Display new time on page
@@ -104,17 +113,17 @@ timeEl.textContent = time;
 
 questionIndex++;
 
-//flash right/wrong feedback on page for half a second
-
 
   // check if we've run out of questions
   //check if we've run out of time
 //if yes then end quiz
 //else get the next question
   if (questionIndex === questions.length || time === 0) {
-    quizEnd();
+    let stall = setTimeout(() => quizEnd(), 1000);
+    // quizEnd();
   } else {
-    nextQuestion();
+    let stall2 = setTimeout(() => nextQuestion(), 1000);
+    // nextQuestion();
   }
 
 };
@@ -152,13 +161,32 @@ function clock() {
 //function for Saving highscore
 function saveHighscore(){
 
+
 //get value of input box for initials
 let initials = document.getElementById("initials").value.trim();
 
 console.log("user Score: " + initials);
+
+var modal = document.getElementById("myModal");
 //make sure value wasn't empty
- if(initials === ""){
-  var modal = document.getElementById("myModal");
+ if(initials !== ""){
+
+  // get saved scores from localstorage, or if not any, set to empty array
+  let allScores = JSON.parse(window.localStorage.getItem("allscores")) || [];
+  // format new score object for current user
+  let newScore = {
+    score: time,
+    initials: initials
+  };
+   // save to localstorage
+   allScores.push(newScore);
+   window.localStorage.setItem("allscores", JSON.stringify(allScores));
+    // redirect to next page
+    window.location.href = "highscores.html";
+
+ }else{
+
+
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
   submit.onclick = function() {
@@ -173,23 +201,28 @@ console.log("user Score: " + initials);
   window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
-  }
-  }
+  };
+  };
 
-  }
-}
+  };
+};
 
-
-//format new score object for current user
-
-//save to localstorage
-//redirect to highscores.html
 
 //function for check for Enter
+// function enterKey(event) {
+//   // "13" represents the enter key
+//   if (event.key === "Enter") {
+//     saveHighscore();
+//   }
+// }
 //"13" represents the enter key "enter"
 
-//user click button to submit initials
+// initials.onkeyup = enterKey();
 
+//user click button to submit initials
+submit.addEventListener("click", function () {
+  saveHighscore();
+});
 //user onclick button to start quiz
 startBtn.addEventListener("click", function () {
   startQuiz();
