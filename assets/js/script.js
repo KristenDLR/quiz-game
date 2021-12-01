@@ -33,13 +33,15 @@ function startQuiz() {
 
   //start timer, setInterval() repeatedly calls a function with a fixed time delay between each call.
   //This will make it tock down because it repeatedly calls the clock()
-  timer = setInterval(clock, 1000);
-  console.log("timer:" + timer);
+  timer = setInterval(clock, 1000)
+  setInterval(function(){;
+  console.log("timer:" + time);
   //show starting time
   timeWrapper.style.display = "inline";
   timeEl.textContent = time;
-  //call function to get next Question
 
+}, 1000);
+//call function to get next Question
   nextQuestion();
 }
 
@@ -119,10 +121,10 @@ questionIndex++;
 //if yes then end quiz
 //else get the next question
   if (questionIndex === questions.length || time === 0) {
-    let stall = setTimeout(() => quizEnd(), 1000);
+   quizEnd();
     // quizEnd();
   } else {
-    let stall2 = setTimeout(() => nextQuestion(), 1000);
+    let stall2 = setTimeout(() => nextQuestion(), 500);
     // nextQuestion();
   }
 
@@ -154,7 +156,7 @@ function clock() {
   time--;
   //check if user ran out of time, end quiz
   if (time <= 0) {
-    endQuiz();
+    quizEnd();
   }
 }
 
@@ -182,7 +184,7 @@ var modal = document.getElementById("myModal");
    allScores.push(newScore);
    window.localStorage.setItem("allscores", JSON.stringify(allScores));
     // redirect to next page
-    window.location.href = "highscores.html";
+    // window.location.href = "highscores.html";
 
  }else{
 
