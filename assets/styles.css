@@ -106,6 +106,52 @@ p{
   border:#4940a8;
 }
 
+button {
+  background-color:hsl(245, 75%, 52%);
+  width:90%;
+  margin:20px !important;
+  border-radius: 10px !important;
+  color:hsl(225, 100%, 98%);
+  padding: 15px;
+  font-weight: bold;
+  box-shadow: 20px 20px 60px 0px hsl(224, 23%, 55%);
+  display: block;
+
+}
+
+button:hover {
+  background-color: #4940a8;
+  cursor: pointer;
+  border:#4940a8;
+}
+.scores{
+  font-weight: 900;
+  font-size:20px;
+  font-family: 'Red Hat Display', sans-serif;
+  padding: 10px;
+}
+
+.scores:hover {
+  cursor: pointer;
+  color:#4940a8;
+}
+
+h2{
+  font-weight: 900;
+  font-size:20px;
+  font-family: 'Red Hat Display', sans-serif;
+  text-align: center;
+  padding-top: 10px;
+}
+
+#question-title {
+  font-weight: 900;
+  font-size:20px;
+  font-family: 'Red Hat Display', sans-serif;
+  text-align: center;
+  padding-top: 10px;
+}
+
 .cancel {
   color:hsl(223, 47%, 23%);
   font-size: 14px;
@@ -123,7 +169,7 @@ p{
 }
 
 .content {
-  padding-top: 200px;
+  padding-top: 100px;
 }
 
 footer{
