@@ -1,0 +1,91 @@
+
+body {
+  background-color: hsl(233, 47%, 7%);
+}
+
+.container {
+  padding: 50px;
+}
+
+.text {
+  background-color: hsl(244, 38%, 16%);
+  color:hsl(0, 0%, 100%);
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+}
+
+/* .image {
+  float:right;
+  width:90%;
+  z-index: 0;
+} */
+
+img{
+  width:100%;
+}
+
+
+.imgDiv {
+  padding:0;
+  background-color: hsl(277, 64%, 61%);
+  z-index: 2;
+  opacity: 0.5;
+  background-image: url("images/image-header-desktop.jpg");
+  background-blend-mode: hard-light;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom-right-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.insight{
+  color:hsl(277, 64%, 61%);
+}
+
+.title{
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size:35px;
+  margin-left: 20px;
+}
+
+.stats{
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.description{
+  font-size:15px;
+  font-family: 'Lexend Deca', sans-serif;
+  color:hsla(0, 0%, 100%, 0.6);
+}
+
+.left1{
+  padding-top:30px;
+  padding-left:30px;
+  padding-right: 40px;
+
+}
+
+.left2{
+  padding-top:15px;
+  padding-left:30px;
+  padding-right: 40px;
+}
+
+.left3{
+  padding-top:15px;
+  padding-left:30px;
+}
+
+
+.stat2{
+  color:hsla(0, 0%, 100%, 0.6);
+  font-size: 10px;
+}
+
+.num{
+  font-size:20px;
+  padding-right: 10px;
+}
