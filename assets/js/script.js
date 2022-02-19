@@ -168,10 +168,11 @@ function saveHighscore(){
 let initials = document.getElementById("initials").value.trim();
 
 console.log("user Score: " + initials);
+//! compare this value with string for modal
 
 var modal = document.getElementById("myModal");
 //make sure value wasn't empty
- if(initials !== ""){
+ if(initials === ""){
 
   // get saved scores from localstorage, or if not any, set to empty array
   let allScores = JSON.parse(window.localStorage.getItem("allscores")) || [];
