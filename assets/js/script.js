@@ -18,6 +18,7 @@ let choicesDiv = document.getElementById("choices");
 let finalScore = document.getElementById("final-score");
 let submit = document.getElementById("submit");
 let answerCheck = document.getElementById("answerCheck");
+var modal = document.querySelector("#myModal");
 // let startScreenDiv = document.getElementById("start-screen");
 //sound effect (ice box)
 let endScreen = document.getElementById("end-screen");
@@ -140,14 +141,16 @@ questionIndex++;
 function quizEnd(){
   //stop timer
   clearInterval(timer);
+  console.log("stopped timer" + timer);
   //show end screen
   endScreen.style.display = "inline";
+
   //show final score
   finalScore.innerHTML = score;
   //hide questions section
   questionsDiv.style.display = "none";
-
-  saveHighscore();
+//?have to run saveHighScore onclick submit button
+  // saveHighscore();
 }
 
 // function for clock
@@ -170,12 +173,14 @@ let initials = document.getElementById("initials").value.trim();
 console.log("user Score: " + initials);
 //! compare this value with string for modal
 
-var modal = document.getElementById("myModal");
+
+
 //make sure value wasn't empty
- if(initials === ""){
+ if(initials !== ""){
 
   // get saved scores from localstorage, or if not any, set to empty array
   let allScores = JSON.parse(window.localStorage.getItem("allscores")) || [];
+ 
   // format new score object for current user
   let newScore = {
     score: time,
@@ -185,21 +190,19 @@ var modal = document.getElementById("myModal");
    allScores.push(newScore);
    window.localStorage.setItem("allscores", JSON.stringify(allScores));
     // redirect to next page
-    // window.location.href = "highscores.html";
+    window.location.href = "highscores.html";
 
- }else{
-
-
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-  submit.onclick = function() {
+ }else if(initials === ""){
+  
+  // alert("hey");
   modal.style.display = "block";
+  
+  console.log("you didnt leave initials modal");
+  // Get the <span> element that closes the modal
+  modal.onclick = function() {
+    modal.style.display = "none";
   }
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-  modal.style.display = "none";
-  }
-
+  
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
   if (event.target == modal) {
@@ -224,7 +227,10 @@ var modal = document.getElementById("myModal");
 
 //user click button to submit initials
 submit.addEventListener("click", function () {
+  
   saveHighscore();
+ 
+  
 });
 //user onclick button to start quiz
 startBtn.addEventListener("click", function () {
