@@ -17,13 +17,30 @@ body {
   background-color: hsl(245, 75%, 52%);
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
+
 }
+
 
 .dancing img {
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
+  width:100%;
+  padding:0;
+
 }
 
+.timer{
+  padding-top:10px;
+}
+
+.codeImg{
+  height:50% !important;
+}
+
+.timerImg{
+  height:70%;
+ 
+}
 .text2 {
   padding-top: 20px;
 }
